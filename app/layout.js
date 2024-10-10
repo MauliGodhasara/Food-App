@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
@@ -12,22 +12,28 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // To handle the mobile menu
 
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
-
-
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen); // To toggle the menu on mobile
 
   return (
     <html lang="en">
       <body className={inter.className}>
         <nav className="bg-black p-4">
-          <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center">
-            <div className="text-white font-bold text-3xl mb-4 lg:mb-0 hover:text-orange-600 hover:cursor-pointer">
+          <div className="container mx-auto flex flex-row justify-between items-center">
+            {/* Logo Section */}
+            <div className="text-white font-bold text-3xl hover:text-orange-600 hover:cursor-pointer">
               Foodies
             </div>
+
+            {/* Hamburger Button for Mobile */}
             <div className="lg:hidden">
-              <button className="text-white focus:outline-none">
+              <button
+                className="text-white focus:outline-none"
+                onClick={toggleMenu}
+              >
                 <svg
                   className="h-6 w-6"
                   fill="none"
@@ -44,7 +50,9 @@ export default function RootLayout({ children }) {
                 </svg>
               </button>
             </div>
-            <div className="lg:flex lg:flex-row lg:space-x-4 lg:mt-0 mt-4 flex flex-col items-center text-xl">
+
+            {/* Desktop Menu */}
+            <div className="hidden lg:flex lg:flex-row lg:space-x-4 items-center text-xl">
               <a href="/" className="text-white px-4 py-2 hover:text-orange-600">
                 Home
               </a>
@@ -56,18 +64,36 @@ export default function RootLayout({ children }) {
                 onClick={openCart}
               >
                 Cart
-
               </button>
             </div>
           </div>
+
+          {/* Mobile Menu - Conditional rendering */}
+          {isMenuOpen && (
+            <div className="lg:hidden mt-4 flex flex-col items-center space-y-2 text-lg">
+              <a href="/" className="text-white px-4 py-2 hover:text-orange-600">
+                Home
+              </a>
+              <a href="/menu" className="text-white px-4 py-2 hover:text-orange-600">
+                Menu
+              </a>
+              <button
+                className="relative text-white px-4 py-2 hover:text-orange-600"
+                onClick={openCart}
+              >
+                Cart
+              </button>
+            </div>
+          )}
         </nav>
+
         <CartProvider>
           <CategoryProvider>
             <div>{children}</div>
           </CategoryProvider>
-
           <CartModal isOpen={isCartOpen} onClose={closeCart} />
         </CartProvider>
+
         <Footer />
       </body>
     </html>
