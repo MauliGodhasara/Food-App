@@ -1,0 +1,38 @@
+{
+  "categories": {
+    "fastFood": [
+      {
+        "id": 1,
+        "name": "Classic Cheeseburger",
+        "description": "Juicy beef patty with melted cheese, lettuce, tomato, and a sesame seed bun.",
+        "price": "8.99",
+        "imageUrl": "/assets/burger.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Grilled  Sandwich",
+        "description": "Tender grilled  breast with  tomato, and mayo on a toasted bun.",
+        "price": "7.99",
+        "imageUrl": "/assets/sandwich.jpg"
+      }
+    ],
+    "desserts": [
+      {
+        "id": 3,
+        "name": "Chocolate Cake",
+        "description": "Rich and moist chocolate cake with a decadent frosting.",
+        "price": "6.99",
+        "imageUrl": "/assets/chocolate-cake.jpg"
+      }
+    ],
+    "salads": [
+      {
+        "id": 4,
+        "name": "Caesar Salad",
+        "description": "Crisp romaine lettuce with Caesar dressing, croutons, and parmesan.",
+        "price": "7.99",
+        "imageUrl": "/assets/caesar-salad.jpg"
+      }
+    ]
+  }
+}
